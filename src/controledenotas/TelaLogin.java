@@ -21,11 +21,16 @@ public class TelaLogin extends JFrame implements ActionListener{
     JTextField txt_nome= new JTextField();
     
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==b1)
+        if(e.getSource()==b1){
         JOptionPane.showMessageDialog(null,"Implentar o login");
+        dispose();
+        new TelaPrincipal().setVisible(true);
+        }
+            
         else
             JOptionPane.showMessageDialog(null,"Implentar o cadastro");
     }
+    
 
     public TelaLogin() {
         
@@ -61,6 +66,8 @@ public class TelaLogin extends JFrame implements ActionListener{
 
     public static void main(String[] args) {
         new TelaLogin();
+        
+        
     }
 
     
