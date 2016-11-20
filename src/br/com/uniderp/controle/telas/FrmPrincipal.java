@@ -1,10 +1,8 @@
 
 package br.com.uniderp.controle.telas;
 
-import br.com.uniderp.dal.ModuloDeConexao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import br.com.uniderp.controller.AlunoDao;
+import br.com.uniderp.entidades.Aluno;
 
 public class FrmPrincipal {
 //    Connection conexao = null;
@@ -12,7 +10,9 @@ public class FrmPrincipal {
 //    ResultSet rs = null;
      public static void main(String[] args) {
         new TelaLogin();
-        
+        Aluno aluno = new Aluno();
+       AlunoDao aluDao = new AlunoDao();
+       aluDao.cadastrarAluno(aluno);
        
         
     }
