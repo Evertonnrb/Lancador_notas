@@ -1,9 +1,12 @@
-package br.com.uniderp.controle.notas;
+package br.com.uniderp.controle.telas;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,11 +16,28 @@ import javax.swing.JTextField;
 
 public class TelaRemover extends JFrame implements ActionListener {
 
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     JLabel lbl_txt = new JLabel("Digite o RA do aluno a ser removido");
     JLabel lbl_remove = new JLabel("RA:");
     JTextField txt_remove = new JTextField("remover");
     JButton btn_excluir = new JButton("Excluir");
     JButton btn_cancelar = new JButton("Cancelar");
+    
+    private void remove(){
+        String sql = "delete from tbl_aluno where ra = ?";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, Integer.parseInt(txt_remove.getText()));
+            pst.executeQuery();
+            JOptionPane.showMessageDialog(null, "Usuário excluido com sucesso","confirmação",2);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao executar "+e+ " ","confirmação",2);
+            
+        }
+    }
 
     public TelaRemover() {
         setVisible(true);
@@ -50,7 +70,7 @@ public class TelaRemover extends JFrame implements ActionListener {
                 int opc = JOptionPane.showConfirmDialog(null, "Certeza que deseja excluir", "Operação"
                         + "não pode ser desfeita", JOptionPane.YES_NO_OPTION);
                 if (opc == JOptionPane.YES_OPTION) {
-                    //implementar
+                    remove();
                 } else {
                     dispose();
                 }

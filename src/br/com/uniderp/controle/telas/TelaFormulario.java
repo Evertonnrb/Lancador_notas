@@ -1,4 +1,4 @@
-package br.com.uniderp.controle.notas;
+package br.com.uniderp.controle.telas;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
